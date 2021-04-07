@@ -4,6 +4,13 @@ function trowModal(data) {
   var newModal = document.createElement("div");
   newModal.classList.add("ao_modal");
   
+  // MODAL OVERLAY ...>>>
+  if (data.overlay === true){
+    var newModalOverlay = document.createElement("div");
+    newModalOverlay.classList.add("ao_modal_overlay");
+  }
+  // END MODAL OVERLAY 
+
   // MODAL CONTENT CONATINER 
   // Info:
   // This is where your edits get added to. Space where the content
@@ -61,6 +68,11 @@ function trowModal(data) {
     newModalButtonCLOSE.appendChild(document.createTextNode("X"));
   }
 
+  // Append ovelay
+  if (typeof(newModalOverlay) !== "undefined"){
+    newModal.appendChild(newModalOverlay);
+  }
+
   // Appending buttons to their container.
   newModalButtons.appendChild(newModalButton);
   newModalButtons.appendChild(newModalButtonCancel);
@@ -70,7 +82,7 @@ function trowModal(data) {
   newModalInner.appendChild(newModalText);
   newModalInner.appendChild(newModalButtons);
 
-  if (typeof(newModalButtonCLOSE) !== undefined){
+  if (typeof(newModalButtonCLOSE) !== "undefined"){
     newModalInner.appendChild(newModalButtonCLOSE);
   }
 
@@ -82,6 +94,20 @@ function trowModal(data) {
   // Being last thing in document makes it easier to show as an overlay
   // covering everything before it.
   document.body.appendChild(newModal);
+
+  newModalButton.onclick = function() {
+    console.log("CONFIRM Button Press");
+    newModal.remove();
+  }
+  newModalButtonCancel.onclick = function() {
+    console.log("Cancel Button Press");
+    newModal.remove();
+  }
+
+  newModalButtonCLOSE.onclick = function(){
+    console.log("CLOSE Button Press");
+    newModal.remove();
+  }
 }
 
 //TEST MODAL
