@@ -1,48 +1,92 @@
 function trowModal(data) {
-  // create a new div element
+
+  // CREATE MODAL CONTAINER/ROOT DIV
   var newModal = document.createElement("div");
   newModal.classList.add("ao_modal");
-  // create a new div element
+  
+  // MODAL CONTENT CONATINER 
+  // Info:
+  // This is where your edits get added to. Space where the content
+  // is being stored and presented.
   var newModalInner = document.createElement("div");
   newModalInner.classList.add("ao_modal_inner");
-  // and give it some content
+  
+  // MODAL TITLE...>>>
   var newModalTitle = document.createElement("h1");
   var newModalTitleText = document.createTextNode(data.title);
   newModalTitle.appendChild(newModalTitleText);
-  // and give it some content
+  
+  // MODAL SUBTITLE...>>>
   var newModalText = document.createElement("p");
   var newModalTextText = document.createTextNode(data.text);
   newModalText.appendChild(newModalTextText);
 
-  // and give it some content
+  // MODAL BUTTONS CONTINAER DIV --->
+  // Info: 
+  // Gets createad and attached with classname so we can add  
+  // buttons into bottom section of the modal.
   var newModalButtons = document.createElement("div");
   newModalButtons.classList.add("ao_modal_buttons");
+  // !END! MODAL BUTTONS CONTAINER DIV !!!
+
+  // CONFIRM BUTTON ===>>>
   var newModalButton = document.createElement("button");
-  var newModalButtonText = document.createTextNode(data.confirmButtonText);
-  newModalButton.appendChild(newModalButtonText);
-  newModalButton.classList.add("blue_btn");
-  newModalButton.innerHTML = data.confirmButtonHTML;
+
+  if (data.confirmButtonText){
+    newModalButton.appendChild(document.createTextNode(data.confirmButtonText));
+  }
+  
+  if (data.confirmButtonHTML){
+    newModalButton.innerHTML = data.confirmButtonHTML;
+  }
+  // !END! CONFIRM BUTTON !!!
+
+
+  // CANCEL BUTTON ===>>>
   var newModalButtonCancel = document.createElement("button");
-  var newModalButtonTextCancel = document.createTextNode(data.cancelButtonText);
-  newModalButtonCancel.appendChild(newModalButtonTextCancel);
-  newModalButtonCancel.innerHTML = data.cancelButtonHTML;
 
-  // add the text node to the newly created div
-  newModalInner.appendChild(newModalTitle);
-  newModalInner.appendChild(newModalText);
+  if (data.cancelButtonText) {
+    newModalButtonCancel.appendChild(document.createTextNode(data.cancelButtonText));
+  }
 
-  newModalInner.appendChild(newModalButtons);
+  if (data.cancelButtonHTML){
+    newModalButtonCancel.innerHTML = data.cancelButtonHTML;
+  }
+  // !END! CANCEL BUTTON !!!
+
+  // CLOSE BUTTON --->>>
+  if (data.showCloseButton === true){
+    var newModalButtonCLOSE = document.createElement("button");
+    newModalButtonCLOSE.classList.add('close_btn')
+    newModalButtonCLOSE.appendChild(document.createTextNode("X"));
+  }
+
+  // Appending buttons to their container.
   newModalButtons.appendChild(newModalButton);
   newModalButtons.appendChild(newModalButtonCancel);
 
+  // Here we fill in CONTENT/INNER div of modal.
+  newModalInner.appendChild(newModalTitle);
+  newModalInner.appendChild(newModalText);
+  newModalInner.appendChild(newModalButtons);
+
+  if (typeof(newModalButtonCLOSE) !== undefined){
+    newModalInner.appendChild(newModalButtonCLOSE);
+  }
+
+  // Appending INNER [CONTENT CONTAINER] to MODAL ROOT ELEM.
   newModal.appendChild(newModalInner);
 
+  // Appending the whole MODAL ROOT ELEM. to Document body.
+  // Info:
+  // Being last thing in document makes it easier to show as an overlay
+  // covering everything before it.
   document.body.appendChild(newModal);
 }
 
 //TEST MODAL
 function testModalFunc() {
-  var testModal = {
+  var testModalHTMLButtons = {
     title: "Error [alpha_version]!",
     text: "Do you want to continue",
     icon: "error",
@@ -64,7 +108,8 @@ function testModalFunc() {
                         </button>`,
     showCancelButton: true,
     showCloseButton: true,
+
   };
 
-  trowModal(testModal);
+  trowModal(testModalHTMLButtons);
 }
