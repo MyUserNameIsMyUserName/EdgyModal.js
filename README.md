@@ -5,6 +5,7 @@ A^O_Modal using plain JS to run itself. Try it out...simple, performance friendl
   
 🔐 Security:   
   
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/87ba07b19109471c9bda9432b4ad5038)](https://app.codacy.com/gh/MyUserNameIsMyUserName/EdgyModal.js?utm_source=github.com&utm_medium=referral&utm_content=MyUserNameIsMyUserName/EdgyModal.js&utm_campaign=Badge_Grade_Settings)
 [![CodeQL](https://github.com/MyUserNameIsMyUserName/EdgyModal.js/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/MyUserNameIsMyUserName/EdgyModal.js/actions/workflows/codeql-analysis.yml) [![Codacy Security Scan](https://github.com/MyUserNameIsMyUserName/EdgyModal.js/actions/workflows/codacy-analysis.yml/badge.svg)](https://github.com/MyUserNameIsMyUserName/EdgyModal.js/actions/workflows/codacy-analysis.yml)   
 ## 
 💎 Code Quality:   
